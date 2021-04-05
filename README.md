@@ -1,3 +1,18 @@
+## StepZen Build Plugin for Netlify
+Work in progress....
+
+This build plugin checks for a stepzen folder and config file, and if present it deploys the schema to StepZen at build-time. If the deploy fails for any reason, we halt the build.
+
+User must configure account and adminkey as secrets on Netlify side to avoid leaking into src repos.
+
+Future enhancements allow override of any default behavior.
+
+Start simple, then improve.
+
+---
+
+## Original README.md Follows
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/79deda3b-d696-4878-b15d-d9f3a862bdfc/deploy-status)](https://app.netlify.com/sites/build-plugin-template/deploys)
 
 Template repository to create new Netlify Build plugins.
