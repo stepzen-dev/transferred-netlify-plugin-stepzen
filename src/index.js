@@ -4,6 +4,8 @@ module.exports = {
   async onPreBuild( args ) {
     console.log('PreBuild')
     console.log('Netlify configuration', args.netlifyConfig)
+    const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_SECRET_VALUE
+    console.log(`I found a secret! ${stepzenSecret}`)
     args.utils.status.show({ summary: 'Success!' })
   },
   async onBuild( args )
