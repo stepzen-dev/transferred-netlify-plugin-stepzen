@@ -1,8 +1,5 @@
 // This is the main file for the Netlify Build plugin stepzen.
-// Please read the comments to learn more about the Netlify Build plugin syntax.
-// Find more information in the Netlify documentation.
 
-/* eslint-disable no-unused-vars */
 module.exports = {
   // The plugin main logic uses `on...` event handlers that are triggered on
   // each new Netlify Build.
@@ -72,7 +69,7 @@ module.exports = {
   }) {
     try {
       // Commands are printed in Netlify logs
-      await run('echo', ['Hello world!\n'])
+      await run('echo', ['Hello world! From the stepzen plugin\n'])
     } catch (error) {
       // Report a user error
       build.failBuild('Error message', { error })
