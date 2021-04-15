@@ -21,12 +21,8 @@ module.exports = {
     })
     args.utils.status.show({summary: 'Success!'})
   },
-  async onPostBuild( args ) {
-  },
-  async onSuccess( args ) {
-  },
-  async onError( args ) {
-  },
-  async onended( args ) {
-  },
+  async onPostBuild( args ) {},
+  async onSuccess( args ) {},
+  async onError( args ) {},
+  async onEnd( args ) {},
 }
