@@ -1,5 +1,5 @@
 // This is the main file for the Netlify Build plugin stepzen.
-const stepzen = require("@stepzen/sdk")
+const stepzen = require('@stepzen/sdk')
 
 module.exports = {
   async onPreBuild( args ) {
