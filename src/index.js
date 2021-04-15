@@ -1,5 +1,5 @@
 // This is the main file for the Netlify Build plugin stepzen.
-import client from '@stepzen/sdk' // The stepzen client
+const stepzen = require("@stepzen/sdk")
 
 module.exports = {
   async onPreBuild( args ) {
@@ -7,7 +7,7 @@ module.exports = {
     console.log('Netlify configuration', args.netlifyConfig)
     const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY
     const stepzenAccount = args.netlifyConfig.build.environment.STEPZEN_ACCOUNT
-    const client = await client({
+    const client = await stepzen.client({
       account: stepzenAccount,
       adminKey: stepzenSecret,
     })
