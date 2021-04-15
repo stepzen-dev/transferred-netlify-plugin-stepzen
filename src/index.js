@@ -8,6 +8,8 @@ module.exports = {
     console.log('Netlify configuration', args.netlifyConfig)
     const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY
     const stepzenAccount = args.netlifyConfig.build.environment.STEPZEN_ACCOUNT
+    console.log('account', stepzenAccount)
+    console.log('key', stepzenSecret)
     const client = await stepzen.client({
       account: stepzenAccount,
       adminKey: stepzenSecret,
