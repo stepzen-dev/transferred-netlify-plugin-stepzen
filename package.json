@@ -49,6 +49,7 @@
     "release-it": "^14.0.3"
   },
   "dependencies": {
-    "@stepzen/sdk": "^0.9.27"
+    "@stepzen/sdk": "^0.9.27",
+    "lodash": "^4.17.21"
   }
 }

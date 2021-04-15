@@ -1,4 +1,5 @@
 // This is the main file for the Netlify Build plugin stepzen.
+const lodash = require('lodash')
 const stepzen = require('@stepzen/sdk')
 
 module.exports = {
