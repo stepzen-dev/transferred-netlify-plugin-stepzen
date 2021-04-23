@@ -12,10 +12,16 @@ module.exports = {
     console.log('constants', constants)
     // values configured by the plugin user
     console.log('inputs', inputs)
+
     // the site’s Netlify configuration
-    console.log('netlifyConfig', netlifyConfig)
+    if(netlifyConfig) {
+      console.log('netlifyConfig', netlifyConfig)
+    }
+    
     // the contents of the site’s package.json file
-    console.log('packageJson', packageJson)
+    if(packageJson) {
+      console.log('packageJson', packageJson)
+    }
 
     // end Optional Plugin Values
 
