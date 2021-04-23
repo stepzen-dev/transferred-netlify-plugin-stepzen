@@ -19,6 +19,8 @@ module.exports = {
 
     // end Optional Plugin Values
 
+    console.log('endPreBuild')
+
     args.utils.status.show({ summary: 'Success!' })
   },
   async onBuild( args ) {
