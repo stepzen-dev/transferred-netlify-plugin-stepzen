@@ -21,7 +21,7 @@ module.exports = {
       return args.utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
     }
     const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY
-    if(!STEPZEN_ACCOUNT) {
+    if(!args.netlifyConfig.build.environment.STEPZEN_ACCOUNT) {
       return utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
     }
     const stepzenAccount = args.netlifyConfig.build.environment.STEPZEN_ACCOUNT
