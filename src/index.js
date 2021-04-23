@@ -4,7 +4,7 @@ const stepzen = require('@stepzen/sdk')
 
 module.exports = {
   async onPreBuild( args, constants, inputs ) {
-    console.log('PreBuild')
+    console.log('PreBuild changes?')
 
     // Optional Plugin Values
 
