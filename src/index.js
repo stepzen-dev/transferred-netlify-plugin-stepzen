@@ -17,6 +17,7 @@ module.exports = {
     const stepzenFolder = args.netlifyConfig.build.environment.STEPZEN_FOLDER || 'netlify'
 
     console.log(chalk.white(`using ${stepzenAccount}`))
+    console.log('update for testing deploy')
     console.log(chalk.white(`pushing schema to ${stepzenFolder}/${stepzenSchema}, and deploying to ${stepzenFolder}/${stepzenEndpoint} using ${stepzenFolder}/${stepzenConfiguration}`))
     const client = await stepzen.client({
       account: stepzenAccount,
