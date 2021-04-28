@@ -2,7 +2,7 @@
 const chalk = require('chalk')
 const stepzen = require('@stepzen/sdk')
 
-function run( args ) {
+async function run( args ) {
     if(!args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY) {
       return args.utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
     }
@@ -36,7 +36,7 @@ function run( args ) {
 module.exports = {
   async onPreBuild( args ) {
     console.log('PreBuild')
-    run(args)
+    await run(args)
     args.utils.status.show({ summary: 'Success!' })
   },
   async onBuild( args ) {
