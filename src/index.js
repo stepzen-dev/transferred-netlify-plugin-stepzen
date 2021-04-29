@@ -3,14 +3,14 @@ const chalk = require('chalk')
 const stepzen = require('@stepzen/sdk')
 
 async function run(args) {
-  
+
   // args
   console.log('args', args)
 
   const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_API_KEY
   const stepzenAccount = args.netlifyConfig.build.environment.STEPZEN_ACCOUNT
   const stepzenSchema =
-    args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_SCHEMA || 'schema'
+    args.netlifyConfig.build.environment.STEPZEN_SCHEMA || 'schema'
   const stepzenEndpoint =
     args.netlifyConfig.build.environment.STEPZEN_ENDPOINT || 'endpoint'
   const stepzenConfiguration =
