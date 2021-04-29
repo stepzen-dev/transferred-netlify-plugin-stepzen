@@ -41,8 +41,8 @@ async function run(args) {
   console.log(chalk.white(`pushing schema to ${endpoint}`))
 
   const client = await stepzen.client({
-    account: stepzenAccount,
-    adminkey: stepzenSecret,
+    account: STEPZEN_ACCOUNT,
+    adminkey: STEPZEN_ADMIN_KEY,
   })
 
   let configurationsets = ['stepzen/default']
