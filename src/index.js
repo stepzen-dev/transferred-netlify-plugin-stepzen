@@ -47,7 +47,7 @@ async function run(args) {
 
   let configurationsets = ['stepzen/default']
   if (args.utils.git.fileMatch('stepzen/config.yaml')) {
-    await client.upload.schema(`${endpoint}`, 'stepzen')
+    await client.upload.configurationset(`${endpoint}`, 'stepzen/config.yaml')
     configurationsets = configurationsets.concat(endpoint)
   }
 
