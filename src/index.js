@@ -12,7 +12,7 @@ async function run(args) {
 
   if (!STEPZEN_ACCOUNT) {
     return args.utils.build.failBuild(
-      'Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.',
+      'Failed finding the STEPZEN_ACCOUNT in the Netlify Environment Variables.',
     )
   }
 
