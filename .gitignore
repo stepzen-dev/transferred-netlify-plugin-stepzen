@@ -2,6 +2,7 @@
 *.swp
 npm-debug.log
 node_modules
+package-lock.json
 /core
 .eslintcache
 .npmrc
