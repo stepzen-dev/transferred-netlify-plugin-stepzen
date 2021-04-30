@@ -17,19 +17,19 @@ async function run(args) {
   }
 
   if (!STEPZEN_ADMIN_KEY) {
-    return utils.build.failBuild(
+    return args.utils.build.failBuild(
       'Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.',
     )
   }
 
   if (!STEPZEN_FOLDER) {
-    return utils.build.failBuild(
+    return args.utils.build.failBuild(
       'Failed finding the STEPZEN_FOLDER in the Netlify Environment Variables.',
     )
   }
 
   if (!STEPZEN_NAME) {
-    return utils.build.failBuild(
+    return args.utils.build.failBuild(
       'Failed finding the STEPZEN_NAME in the Netlify Environment Variables.',
     )
   }
