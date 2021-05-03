@@ -8,9 +8,9 @@ async function validateSchema(args) {
     STEPZEN_NAME,
   } = args.netlifyConfig.build.environment
 
-  const validateSchema = `${STEPZEN_FOLDER}/${STEPZEN_NAME}, 'stepzen'`
+  const validateSchema = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
   try {
-    validate(validateSchema)
+    validate(`stepzen/${validateSchema}`)
   } catch (error) {
     console.log(error)
   }
@@ -50,8 +50,18 @@ async function run(args) {
 
   const endpoint = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
 
-  console.info(`%c The StepZen Account being used: ${STEPZEN_ACCOUNT}`, 'color: #FFFFFF')
-  console.info(`%c Pushing schema to ${endpoint}`, 'color: #FFFFFF')
+  let top =
+    'color:#ffffff;font-weight: 600;border-color: #8b6091;border-width: 2px 0 0;border-radius:5px'
+  let middle = 'color:#ffffff;font-weight: 600'
+  let bottom =
+    'color:#ffffff;font-weight: 600;border-color: #8b6091;border-width: 0 0 2px;border-radius:5px'
+
+  console.info(`%c Deploying from StepZen account: ${STEPZEN_ACCOUNT}`, top)
+  console.info(`%c Pushing schema to ${endpoint}`, middle)
+  console.info(
+    `%c Your endpoint is available at https://${STEPZEN_ACCOUNT}.stepzen.net/${endpoint}/__graphql`,
+    bottom,
+  )
 
   const client = await stepzen.client({
     account: STEPZEN_ACCOUNT,
