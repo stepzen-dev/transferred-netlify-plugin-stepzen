@@ -2,7 +2,7 @@
 const stepzen = require('@stepzen/sdk')
 const { validate } = require('@stepzen/transpiler')
 
-async function validate(args) {
+async function validateSchema(args) {
   const {
     STEPZEN_FOLDER = 'netlify',
     STEPZEN_NAME,
@@ -76,7 +76,7 @@ module.exports = {
   async onPreBuild(args) {
     console.log('PreBuild')
     await run(args)
-    await validate(args)
+    await validateSchema(args)
     args.utils.status.show({ summary: 'Success!' })
   },
   async onBuild(args) {
