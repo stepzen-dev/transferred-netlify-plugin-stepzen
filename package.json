@@ -50,6 +50,6 @@
   },
   "dependencies": {
     "@stepzen/sdk": "^0.9.27",
-    "chalk": "^4.1.0"
+    "@stepzen/transpiler": "^0.0.12"
   }
 }
