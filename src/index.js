@@ -8,7 +8,7 @@ async function validateSchema(args) {
     STEPZEN_NAME,
   } = args.netlifyConfig.build.environment
 
-  const validateSchema = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
+  const validateSchema = `${STEPZEN_FOLDER}/${STEPZEN_NAME}, 'stepzen'`
   try {
     validate(validateSchema)
   } catch (error) {
@@ -50,8 +50,8 @@ async function run(args) {
 
   const endpoint = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
 
-  console.log(`using ${STEPZEN_ACCOUNT}`, 'color: #FFFFFF')
-  console.log(`pushing schema to ${endpoint}`, 'color: #FFFFFF')
+  console.info(`%c The StepZen Account being used: ${STEPZEN_ACCOUNT}`, 'color: #FFFFFF')
+  console.info(`%c Pushing schema to ${endpoint}`, 'color: #FFFFFF')
 
   const client = await stepzen.client({
     account: STEPZEN_ACCOUNT,
