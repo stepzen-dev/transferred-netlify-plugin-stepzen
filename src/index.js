@@ -1,6 +1,20 @@
 // This is the main file for the Netlify Build plugin stepzen.
-const chalk = require('chalk')
 const stepzen = require('@stepzen/sdk')
+const { validate } = require('@stepzen/transpiler')
+
+async function validate(args) {
+  const {
+    STEPZEN_FOLDER = 'netlify',
+    STEPZEN_NAME,
+  } = args.netlifyConfig.build.environment
+
+  const validateSchema = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
+  try {
+    validate(validateSchema)
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 async function run(args) {
   const {
@@ -36,9 +50,8 @@ async function run(args) {
 
   const endpoint = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
 
-  console.log(chalk.white(`using ${STEPZEN_ACCOUNT}`))
-  console.log('update for testing deploy')
-  console.log(chalk.white(`pushing schema to ${endpoint}`))
+  console.log(`using ${STEPZEN_ACCOUNT}`, 'color: #FFFFFF')
+  console.log(`pushing schema to ${endpoint}`, 'color: #FFFFFF')
 
   const client = await stepzen.client({
     account: STEPZEN_ACCOUNT,
@@ -63,6 +76,7 @@ module.exports = {
   async onPreBuild(args) {
     console.log('PreBuild')
     await run(args)
+    await validate(args)
     args.utils.status.show({ summary: 'Success!' })
   },
   async onBuild(args) {
