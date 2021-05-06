@@ -48,6 +48,5 @@
   },
   "dependencies": {
     "@stepzen/sdk": "^0.9.27",
-    "@stepzen/transpiler": "^0.0.12"
   }
 }
