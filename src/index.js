@@ -28,7 +28,7 @@ async function run(args) {
     [
       STEPZEN_ACCOUNT,
       STEPZEN_ADMIN_KEY,
-      STEPZEN_FOLDER_CONFIG,
+      STEPZEN_FOLDER,
       STEPZEN_NAME,
     ].every((element) => !element)
   ) {
