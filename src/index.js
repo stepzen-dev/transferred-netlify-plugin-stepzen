@@ -25,12 +25,9 @@ async function run(args) {
   } = args.netlifyConfig.build.environment
 
   if (
-    [
-      STEPZEN_ACCOUNT,
-      STEPZEN_ADMIN_KEY,
-      STEPZEN_FOLDER,
-      STEPZEN_NAME,
-    ].every((element) => !element)
+    [STEPZEN_ACCOUNT, STEPZEN_ADMIN_KEY, STEPZEN_FOLDER, STEPZEN_NAME].every(
+      (element) => !element,
+    )
   ) {
     // No parameters, have to not fail.
     return args.utils.status.show(
@@ -88,7 +85,7 @@ async function run(args) {
   await client.upload.schema(endpoint, 'stepzen')
 
   await client.deploy(endpoint, {
-    ["netlify/configuration"],
+    configurationsets: ['netlify/configuration'],
     schema: endpoint,
   })
 }
