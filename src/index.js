@@ -85,16 +85,10 @@ async function run(args) {
     adminkey: STEPZEN_ADMIN_KEY,
   })
 
-  let configurationsets = ['stepzen/default']
-  if (args.utils.git.fileMatch('stepzen/config.yaml')) {
-    await client.upload.configurationset(endpoint, 'stepzen/config.yaml')
-    configurationsets = configurationsets.concat(endpoint)
-  }
-
   await client.upload.schema(endpoint, 'stepzen')
 
   await client.deploy(endpoint, {
-    configurationsets,
+    ["netlify/configuration"],
     schema: endpoint,
   })
 }
