@@ -20,9 +20,20 @@ async function run(args) {
   const {
     STEPZEN_ACCOUNT,
     STEPZEN_ADMIN_KEY,
-    STEPZEN_FOLDER = 'netlify',
+    STEPZEN_FOLDER,
     STEPZEN_NAME,
   } = args.netlifyConfig.build.environment
+
+  if (
+    [STEPZEN_ACCOUNT, STEPZEN_ADMIN_KEY, STEPZEN_FOLDER, STEPZEN_NAME].every(
+      (element) => !element,
+    )
+  ) {
+    // No parameters, have to not fail.
+    return args.utils.status.show(
+      'Successfully called the stepzen plugin, but no stepzen configuration found, exiting',
+    )
+  }
 
   if (!STEPZEN_ACCOUNT) {
     return args.utils.build.failBuild(
