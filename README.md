@@ -1,9 +1,9 @@
 
-# Netlify Build Plugin: Deploy a StepZen GraphQL Endpoint on Every Netlify Build
+# Netlify Build Plugin: Deploy a StepZen GraphQL Endpoint on a Netlify Build
 
 Deploy a [StepZen](http://stepzen.com) GraphQL API with any Netlify build.  
 
-StepZen enables you easily integrate APIs and data for Jamstack sites and apps by making it easy to build a GraphQL API that gets the data you need from REST, databases or any backend. After you've built a GraphQL API to power a site's static assets or dynamic experiences, the StepZen integration and plugin enables you to easily integrate the API in a Netlify build. No change is required to the Netlify deployment process. Your endpoint runs on StepZen, as a service, so that you don't manage any infrastructure. 
+StepZen enables you easily integrate APIs and data for Jamstack sites by making it easy to build a GraphQL API that gets the data you need from REST, databases or any backend. After you've built a GraphQL API to power a site's static assets or dynamic experiences, the StepZen plugin enables you to easily integrate the API in a Netlify build. No change is required to the Netlify deployment process. Your endpoint runs on StepZen, as a service, so that you don't manage any infrastructure. 
 
 ## Usage
 Install the netlify plugin 
