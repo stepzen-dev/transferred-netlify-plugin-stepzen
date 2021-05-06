@@ -4,12 +4,8 @@
   "description": "Netlify Build plugin - This plugin will deploy a stepzen API endpoint on every netlify build.",
   "main": "src/index.js",
   "files": [
-    "src/**/*.js",
-    "src/**/*.json",
-    "src/**/*.sh",
-    "src/**/*.html",
-    "src/**/*.ejs",
-    "manifest.yml"
+    "manifest.yml",
+    "src/"
   ],
   "keywords": [
     "netlify-plugin",
