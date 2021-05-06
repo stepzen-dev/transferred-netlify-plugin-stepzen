@@ -1,20 +1,5 @@
 // This is the main file for the Netlify Build plugin stepzen.
 const stepzen = require('@stepzen/sdk')
-const { validate } = require('@stepzen/transpiler')
-
-async function validateSchema(args) {
-  const {
-    STEPZEN_FOLDER = 'netlify',
-    STEPZEN_NAME,
-  } = args.netlifyConfig.build.environment
-
-  const validateSchema = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
-  try {
-    validate(`${validateSchema}`)
-  } catch (error) {
-    console.log(error)
-  }
-}
 
 async function run(args) {
   const {
@@ -94,7 +79,6 @@ module.exports = {
   async onPreBuild(args) {
     console.log('PreBuild')
     await run(args)
-    await validateSchema(args)
     args.utils.status.show({ summary: 'Success!' })
   },
   async onBuild(args) {
