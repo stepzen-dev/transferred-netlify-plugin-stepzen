@@ -34,6 +34,9 @@ async function run(args) {
       'Successfully called the stepzen plugin, but no stepzen configuration found, exiting',
     )
   }
+  
+  // Set STEPZEN_FOLDER to a default value
+  STEPZEN_FOLDER = STEPZEN_FOLDER || "netlify"
 
   if (!STEPZEN_ACCOUNT) {
     return args.utils.build.failBuild(
