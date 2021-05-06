@@ -25,18 +25,21 @@ async function run(args) {
   } = args.netlifyConfig.build.environment
 
   if (
-    [STEPZEN_ACCOUNT, STEPZEN_ADMIN_KEY, STEPZEN_FOLDER, STEPZEN_NAME].every(
-      (element) => !element,
-    )
+    [
+      STEPZEN_ACCOUNT,
+      STEPZEN_ADMIN_KEY,
+      STEPZEN_FOLDER_CONFIG,
+      STEPZEN_NAME,
+    ].every((element) => !element)
   ) {
     // No parameters, have to not fail.
     return args.utils.status.show(
       'Successfully called the stepzen plugin, but no stepzen configuration found, exiting',
     )
   }
-  
+
   // Set STEPZEN_FOLDER to a default value
-  STEPZEN_FOLDER = STEPZEN_FOLDER || "netlify"
+  const STEPZEN_FOLDER_CONFIG = STEPZEN_FOLDER || 'netlify'
 
   if (!STEPZEN_ACCOUNT) {
     return args.utils.build.failBuild(
@@ -50,7 +53,7 @@ async function run(args) {
     )
   }
 
-  if (!STEPZEN_FOLDER) {
+  if (!STEPZEN_FOLDER_CONFIG) {
     return args.utils.build.failBuild(
       'Failed finding the STEPZEN_FOLDER in the Netlify Environment Variables.',
     )
@@ -62,7 +65,7 @@ async function run(args) {
     )
   }
 
-  const endpoint = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
+  const endpoint = `${STEPZEN_FOLDER_CONFIG}/${STEPZEN_NAME}`
 
   console.info(
     `%c Deploying from StepZen account: ${STEPZEN_ACCOUNT}`,
