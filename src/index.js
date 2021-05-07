@@ -7,12 +7,18 @@ async function run(args) {
     STEPZEN_ADMIN_KEY,
     STEPZEN_FOLDER,
     STEPZEN_NAME,
+    STEPZEN_CONFIGURATION_SETS,
   } = args.netlifyConfig.build.environment
 
+  // If there are no parameters, then we should exit with no error.
   if (
-    [STEPZEN_ACCOUNT, STEPZEN_ADMIN_KEY, STEPZEN_FOLDER, STEPZEN_NAME].every(
-      (element) => !element,
-    )
+    [
+      STEPZEN_ACCOUNT,
+      STEPZEN_ADMIN_KEY,
+      STEPZEN_FOLDER,
+      STEPZEN_NAME,
+      STEPZEN_CONFIGURATION_SETS,
+    ].every((element) => !element)
   ) {
     // No parameters, have to not fail.
     return args.utils.status.show(
@@ -20,9 +26,13 @@ async function run(args) {
     )
   }
 
-  // Set STEPZEN_FOLDER to a default value
+  // Set STEPZEN_FOLDER_CONFIG and STEPZEN_CONFIGURATION_SETS_CONFIG
+  // to a default value if absent
   const STEPZEN_FOLDER_CONFIG = STEPZEN_FOLDER || 'netlify'
+  const STEPZEN_CONFIGURATION_SETS_CONFIG =
+    STEPZEN_CONFIGURATION_SETS || 'netlify/configuration,stepzen/defaults'
 
+  // Ensure that required areguments are present.
   if (!STEPZEN_ACCOUNT) {
     return args.utils.build.failBuild(
       'Failed finding the STEPZEN_ACCOUNT in the Netlify Environment Variables.',
@@ -35,19 +45,17 @@ async function run(args) {
     )
   }
 
-  if (!STEPZEN_FOLDER_CONFIG) {
-    return args.utils.build.failBuild(
-      'Failed finding the STEPZEN_FOLDER in the Netlify Environment Variables.',
-    )
-  }
-
   if (!STEPZEN_NAME) {
     return args.utils.build.failBuild(
       'Failed finding the STEPZEN_NAME in the Netlify Environment Variables.',
     )
   }
 
+  // Now construct all the parameters we need.
   const endpoint = `${STEPZEN_FOLDER_CONFIG}/${STEPZEN_NAME}`
+  const configurationSets = STEPZEN_CONFIGURATION_SETS_CONFIG.split(
+    ',',
+  ).map((term) => term.trim())
 
   console.info(
     `%c Deploying from StepZen account: ${STEPZEN_ACCOUNT}`,
@@ -70,7 +78,7 @@ async function run(args) {
   await client.upload.schema(endpoint, 'stepzen')
 
   await client.deploy(endpoint, {
-    configurationsets: ['netlify/configuration'],
+    configurationsets: configurationSets,
     schema: endpoint,
   })
 }
