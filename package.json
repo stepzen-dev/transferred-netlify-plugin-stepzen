@@ -20,8 +20,8 @@
   "author": "StepZen",
   "license": "MIT",
   "repository": {
-    "type" : "git", 
-    "url" : "git+https://github.com/steprz/netlify-plugin-stepzen.git"
+    "type": "git",
+    "url": "git+https://github.com/steprz/netlify-plugin-stepzen.git"
   },
   "bugs": {
     "url": "https://github.com/steprz/netlify-plugin-stepzen/issues"
