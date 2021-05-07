@@ -1,4 +1,4 @@
-# Netlify Build Plugin: Deploy a StepZen GraphQL Endpoint on a Netlify Build
+# Netlify Build Plugin: Deploy a StepZen GraphQL Endpoint using a Netlify Build
 
 Deploy a [StepZen](http://stepzen.com) GraphQL API with any Netlify build.
 
@@ -10,20 +10,34 @@ API in a Netlify build. No change is required to the Netlify deployment process.
 Your endpoint runs on StepZen, as a service, so that you don't manage any
 infrastructure.
 
+## Pre-requisites
+- *required* You have a Account and Site.
+- *required* You have a [StepZen](http://stepzen.com) account, and you know the account
+             name and admin API Key for the account.
+- *required* You have installed the Stepzen CLI tool `npm install -g stepzen` 
+- *optional* You have built an API using Stepzen. Go [here](https://www.stepzen.com/developers) for a quick "how to".
+
 ## Usage
 
-Install the netlify plugin `npm install netlify -g`
+Install this plugin.
 
-????? more detail here
+????? There should be a button here.., and there should be instructions.
 
-The plugin installs the following in the Netlify project:
+The install process installs the following in your Netlify project:
 
 - A `stepzen` directory
 - A build plugin `netlify-plugin-stepzen`
-- Two environment variables: One specifies the name of your StepZen account; a
-  second specifies the admin API Key that enables access to that account's
-  endpoint.
--
+- Three environment variables: 
+  - One specifies the name of your StepZen account; 
+  - the Second specifies the admin API Key that enables access to that account's
+    endpoint.
+  - the Third specifies a name to use for this project.
+- Optionally, you can specify two other parameters.
+  - A folder to contain this project in (this defaults to `netlify`)
+  - A list of StepZen configurations to apply to your schema definitions. Do not worry
+    if this does not make sense to you, it will when you start using StepZen more
+    deeply. This is specified as a comma separated string, 
+    and defaults to `netlify/configuration,stepzen/defaults`.
 
 ## How does it work?
 
