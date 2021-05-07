@@ -11,19 +11,21 @@ Your endpoint runs on StepZen, as a service, so that you don't manage any
 infrastructure.
 
 ## Pre-requisites
-- *required* You have a Account and Site.
+- *required* You have a [Netlify](http://netlify.com) Account and Site.
 - *required* You have a [StepZen](http://stepzen.com) account, and you know the account
-             name and admin API Key for the account.
-- *required* You have installed the Stepzen CLI tool `npm install -g stepzen` 
-- *optional* You have built an API using Stepzen. Go [here](https://www.stepzen.com/developers) for a quick "how to".
+             name and admin API Key.
+- *optional, recommended* You have installed the Stepzen CLI tool `npm install -g stepzen` 
+- *optional, recommended* You have built an API using Stepzen. Go [here](https://www.stepzen.com/developers) for a quick "how to".
 
 ## Usage
 
-The first step is to install this plugin into your project. You have two options. 
+The first step is to install this plugin into your Netlify Site. You have two options. 
 
-- Search for `stepzen` in the Netlify plugins [directory] (https://app.netlify.com/plugins), 
+- Search for `stepzen` in the Netlify plugins [directory](https://app.netlify.com/plugins), 
   and click the install button.
-- Install using the Netlify configuration file, this allows more customization. Follow the instructions [here](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation).
+- Install using the Netlify configuration file, this allows for more customization. 
+  Follow the instructions [here](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation).
+  This plugin is named `netlify-plugin-stepzen` on NPM, and is hosted at `https://github.com/steprz/netlify-plugin-stepzen` in case you want to take this path.
 
 Second, you configure the plugin.
  
@@ -40,6 +42,7 @@ Second, you configure the plugin.
   - `STEPZEN_CONFIGURATION_SETS` is a list of StepZen configurationsets to apply to your 
     schema definitions. This is specified as a comma separated string, 
     and defaults to `netlify/configuration,stepzen/defaults`.
+- It's done!
 
 ## How does it work?
 
