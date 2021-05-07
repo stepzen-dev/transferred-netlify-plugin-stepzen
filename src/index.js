@@ -62,12 +62,12 @@ async function run(args) {
     'color:#ffffff;font-weight: 600;border-color: #8b6091;border-width: 2px 0 0;border-radius:5px',
   )
   console.info(
-    `%c Pushing schema to ${endpoint}`,
+    `%c using configuration sets ${configurationSets}`,
     'color:#ffffff;font-weight: 600',
   )
   console.info(
-    `%c Your endpoint is available at https://${STEPZEN_ACCOUNT}.stepzen.net/${endpoint}/__graphql`,
-    'color:#ffffff;font-weight: 600;border-color: #8b6091;border-width: 0 0 2px;border-radius:5px',
+    `%c Pushing schema to ${endpoint}`,
+    'color:#ffffff;font-weight: 600',
   )
 
   const client = await stepzen.client({
@@ -81,6 +81,11 @@ async function run(args) {
     configurationsets: configurationSets,
     schema: endpoint,
   })
+
+  console.info(
+    `%c Your endpoint is available at https://${STEPZEN_ACCOUNT}.stepzen.net/${endpoint}/__graphql`,
+    'color:#ffffff;font-weight: 600;border-color: #8b6091;border-width: 0 0 2px;border-radius:5px',
+  )
 }
 
 module.exports = {
