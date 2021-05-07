@@ -19,24 +19,26 @@ infrastructure.
 
 ## Usage
 
-Install this plugin.
+The first step is to install this plugin into your project. You have two options. 
 
-????? There should be a button here.., and there should be instructions.
+- Search for `stepzen` in the Netlify plugins [directory] (https://app.netlify.com/plugins), 
+  and click the install button.
+- Install using the Netlify configuration file, this allows more customization. Follow the instructions [here](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation).
 
-The install process installs the following in your Netlify project:
-
-- A `stepzen` directory
-- A build plugin `netlify-plugin-stepzen`
-- Three environment variables: 
-  - One specifies the name of your StepZen account; 
-  - the Second specifies the admin API Key that enables access to that account's
+Second, you configure the plugin.
+ 
+- Create a `stepzen` directory containing your API specification. If you have built an 
+  API using Stepzen, you can just copy the directory into your Netlify project root 
+  folder and name it `stepzen`. 
+- Add three environment variables, as specified [here](https://docs.netlify.com/configure-builds/environment-variables/#declare-variables): 
+  - `STEPZEN_ACCOUNT` specifies the name of your StepZen account; 
+  - `STEPZEN_ADMIN_KEY` specifies the admin API Key that enables access to that account's
     endpoint.
-  - the Third specifies a name to use for this project.
-- Optionally, you can specify two other parameters.
-  - A folder to contain this project in (this defaults to `netlify`)
-  - A list of StepZen configurations to apply to your schema definitions. Do not worry
-    if this does not make sense to you, it will when you start using StepZen more
-    deeply. This is specified as a comma separated string, 
+  - `STEPZEN_NAME` specifies a name that Stepzen will to use for the resources related to this project.
+- Optionally, you can specify two other environment variables.
+  - `STEPZEN_FOLDER` is a folder within Stepzen for project resources in (this defaults to `netlify`)
+  - `STEPZEN_CONFIGURATION_SETS` is a list of StepZen configurationsets to apply to your 
+    schema definitions. This is specified as a comma separated string, 
     and defaults to `netlify/configuration,stepzen/defaults`.
 
 ## How does it work?

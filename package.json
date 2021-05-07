@@ -8,14 +8,25 @@
     "src/"
   ],
   "keywords": [
+    "netlify",
     "netlify-plugin",
     "netlify-plugin-stepzen",
-    "netlify",
-    "stepzen"
+    "stepzen",
+    "graphql",
+    "api",
+    "apis",
+    "jamstack"
   ],
-  "author": "Sridhar Rajagopalan <sridhar@stepzen.com>",
+  "author": "StepZen",
   "license": "MIT",
-  "repository": "steprz/netlify-plugin-stepzen",
+  "repository": {
+    "type" : "git", 
+    "url" : "git+https://github.com/steprz/netlify-plugin-stepzen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/steprz/netlify-plugin-stepzen/issues"
+  },
+  "homepage": "https://github.com/steprz/netlify-plugin-stepzen#readme",
   "directories": {
     "lib": "src",
     "test": "test"
