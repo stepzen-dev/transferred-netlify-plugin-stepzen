@@ -1,6 +1,6 @@
 {
   "name": "netlify-plugin-stepzen",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Netlify Build plugin - This plugin will deploy a stepzen API endpoint on every netlify build.",
   "main": "src/index.js",
   "files": [
