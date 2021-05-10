@@ -90,7 +90,6 @@ async function run(args) {
 
 module.exports = {
   async onPreBuild(args) {
-    console.log('PreBuild')
     await run(args)
     args.utils.status.show({ summary: 'Success!' })
   },
