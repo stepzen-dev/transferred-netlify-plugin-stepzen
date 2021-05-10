@@ -93,19 +93,4 @@ module.exports = {
     await run(args)
     args.utils.status.show({ summary: 'Success!' })
   },
-  async onBuild(args) {
-    args.utils.status.show({ summary: 'Success!' })
-  },
-  async onPostBuild(args) {
-    args.utils.status.show({ summary: 'Success!' })
-  },
-  async onSuccess(args) {
-    args.utils.status.show({ summary: 'Success!' })
-  },
-  async onError(args) {
-    args.utils.status.show({ summary: 'Success!' })
-  },
-  async onEnd(args) {
-    args.utils.status.show({ summary: 'Success!' })
-  },
 }
