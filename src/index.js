@@ -70,17 +70,23 @@ async function run(args) {
     'color:#ffffff;font-weight: 600',
   )
 
-  const client = await stepzen.client({
-    account: STEPZEN_ACCOUNT,
-    adminkey: STEPZEN_ADMIN_KEY,
-  })
+  try {
+    const client = await stepzen.client({
+      account: STEPZEN_ACCOUNT,
+      adminkey: STEPZEN_ADMIN_KEY,
+    })
 
-  await client.upload.schema(endpoint, 'stepzen')
+    await client.upload.schema(endpoint, 'stepzen')
 
-  await client.deploy(endpoint, {
-    configurationsets: configurationSets,
-    schema: endpoint,
-  })
+    await client.deploy(endpoint, {
+      configurationsets: configurationSets,
+      schema: endpoint,
+    })
+  } catch (e) {
+    return args.utils.build.failBuild(
+      `Failed to upload and deploy your API endpoint to Stepzen use the stepzen tool to debug this issue further. \n error: ${e.message}`,
+    )
+  }
 
   console.info(
     `%c Your endpoint is available at https://${STEPZEN_ACCOUNT}.stepzen.net/${endpoint}/__graphql`,
