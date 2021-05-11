@@ -84,7 +84,8 @@ async function run(args) {
     })
   } catch (e) {
     return args.utils.build.failBuild(
-      `Failed to upload and deploy your API endpoint to Stepzen use the stepzen tool to debug this issue further. \n error: ${e.message}`,
+      `Failed to upload and deploy your API endpoint to Stepzen. Use the stepzen tool to debug this issue further`,
+      { error: e },
     )
   }
 
