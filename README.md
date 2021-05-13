@@ -88,7 +88,7 @@ queries are protected when making calls from a browser to retrieve and render
 data on the client-side. You don't need to write code to parallelize execution,
 store keys safely, handle caching, and more.
 
-The Nelify integration simplifies your deployment. The workflow you use to
+The Netlify integration simplifies your deployment. The workflow you use to
 deploy changes on Netlify does not change. You manage your GraphQL schemas
 (SDLs) in a cohesive way with the rest of the Netlify site and your releases are
 coordinated.
