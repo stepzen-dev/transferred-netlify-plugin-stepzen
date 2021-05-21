@@ -27,12 +27,6 @@ options.
 
 - Search for `stepzen` in the Netlify plugins
   [directory](https://app.netlify.com/plugins), and click the install button.
-- Install using the Netlify configuration file, this allows for more
-  customization. Follow the instructions
-  [here](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation).
-  This plugin is named `netlify-plugin-stepzen` on NPM, and is hosted at
-  `https://github.com/steprz/netlify-plugin-stepzen` in case you want to take
-  this path.
 
 Second, you configure the plugin.
 
