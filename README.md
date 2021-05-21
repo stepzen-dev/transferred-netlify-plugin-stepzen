@@ -12,12 +12,12 @@ infrastructure.
 
 ## Pre-requisites
 
-- _required_ You have a [Netlify](http://netlify.com) Account and Site.
+- _required_ You have a [Netlify](http://netlify.com) account and site.
 - _required_ You have a [StepZen](http://stepzen.com) account, and you know the
   account name and admin API Key.
-- _optional, recommended_ You have installed the Stepzen CLI tool
+- _optional, recommended_ You have installed the StepZen CLI tool
   `npm install -g stepzen`
-- _optional, recommended_ You have built an API using Stepzen. Go
+- _optional, recommended_ You have built an API using StepZen. Go
   [here](https://www.stepzen.com/developers) for a quick "how to".
 
 ## Usage
@@ -37,17 +37,17 @@ options.
 Second, you configure the plugin.
 
 - Create a `stepzen` directory containing your API specification. If you have
-  built an API using Stepzen, you can just copy the directory into your Netlify
+  built an API using StepZen, you can just copy the directory into your Netlify
   project root folder and name it `stepzen`.
 - Add three environment variables, as specified
   [here](https://docs.netlify.com/configure-builds/environment-variables/#declare-variables):
   - `STEPZEN_ACCOUNT` specifies the name of your StepZen account;
   - `STEPZEN_ADMIN_KEY` specifies the admin API Key that enables access to that
     account's endpoint.
-  - `STEPZEN_NAME` specifies a name that Stepzen will to use for the resources
+  - `STEPZEN_NAME` specifies a name that StepZen will to use for the resources
     related to this project.
 - Optionally, you can specify two other environment variables.
-  - `STEPZEN_FOLDER` is a folder within Stepzen for project resources in (this
+  - `STEPZEN_FOLDER` is a folder within StepZen for project resources in (this
     defaults to `netlify`)
   - `STEPZEN_CONFIGURATION_SETS` is a list of StepZen configurationsets to apply
     to your schema definitions. This is specified as a comma separated string,
@@ -88,7 +88,7 @@ queries are protected when making calls from a browser to retrieve and render
 data on the client-side. You don't need to write code to parallelize execution,
 store keys safely, handle caching, and more.
 
-The Nelify integration simplifies your deployment. The workflow you use to
+The Netlify integration simplifies your deployment. The workflow you use to
 deploy changes on Netlify does not change. You manage your GraphQL schemas
 (SDLs) in a cohesive way with the rest of the Netlify site and your releases are
 coordinated.
