@@ -1,20 +1,15 @@
-# Netlify Build Plugin: Deploy a StepZen GraphQL Endpoint using a Netlify Build
+# Netlify Build Plugin: Deploy a StepZen GraphQL Endpoint Alongside a Netlify Build
 
-Deploy a [StepZen](http://stepzen.com) GraphQL API with any Netlify build.
+The StepZen Netlify Build Pluign allows you to deploy a GraphQL API to [StepZen](http://stepzen.com) during a Netlify build.
 
-StepZen enables you easily integrate APIs and data for Jamstack sites by making
-it easy to build a GraphQL API that gets the data you need from REST, databases
-or any backend. After you've built a GraphQL API to power a site's static assets
-or dynamic experiences, the StepZen plugin enables you to easily integrate the
-API in a Netlify build. No change is required to the Netlify deployment process.
-Your endpoint runs on StepZen, as a service, so that you don't manage any
-infrastructure.
+StepZen enables you integrate APIs and data into a single GraphQL API that forms the backend of your Jamstack site. You can populate your API with data from REST, databases or any backend. The StepZen plugin enables you to easily deploy and integrate the API in a Netlify build. No change is required to the Netlify deployment process. Your endpoint runs on StepZen, as a service, so that you don't manage any infrastructure.
+
+> For a full tutorial walkthrough showing how to build a Jamstack site using the StepZen Netlify Build Plugin, check our tutorial "[How to build a database-driven Jamstack site](https://www.netlify.com/blog/2021/06/10/how-to-build-a-database-driven-jamstack-site/)" on the Netlify Blog.
 
 ## Pre-requisites
 
 - _required_ You have a [Netlify](http://netlify.com) account and site.
-- _required_ You have a [StepZen](http://stepzen.com) account, and you know the
-  account name and admin API Key.
+- _required_ You have a [StepZen](http://stepzen.com) account.
 - _optional, recommended_ You have installed the StepZen CLI tool
   `npm install -g stepzen`
 - _optional, recommended_ You have built an API using StepZen. Go
@@ -22,67 +17,45 @@ infrastructure.
 
 ## Usage
 
-The first step is to install this plugin into your Netlify Site. You have two
-options.
+The first step is to install this plugin into your Netlify Site.
 
 - Search for `stepzen` in the Netlify plugins
   [directory](https://app.netlify.com/plugins), and click the install button.
 
-Second, you configure the plugin.
+Next, configure the plugin.
 
-- Create a `stepzen` directory containing your API specification. If you have
-  built an API using StepZen, you can just copy the directory into your Netlify
-  project root folder and name it `stepzen`.
-- Add three environment variables, as specified
-  [here](https://docs.netlify.com/configure-builds/environment-variables/#declare-variables):
-  - `STEPZEN_ACCOUNT` specifies the name of your StepZen account;
-  - `STEPZEN_ADMIN_KEY` specifies the admin API Key that enables access to that
-    account's endpoint.
-  - `STEPZEN_NAME` specifies a name that StepZen will to use for the resources
-    related to this project.
-- Optionally, you can specify two other environment variables.
-  - `STEPZEN_FOLDER` is a folder within StepZen for project resources in (this
-    defaults to `netlify`)
-  - `STEPZEN_CONFIGURATION_SETS` is a list of StepZen configurationsets to apply
-    to your schema definitions. This is specified as a comma separated string,
-    and defaults to `netlify/configuration,stepzen/defaults`.
-- It's done!
+- Create a `stepzen` directory within your Netlify project root containing your API specification.
+- Add the environment variables (For options on how to add environment variables to Netlify, refer to [their documentation](https://docs.netlify.com/configure-builds/environment-variables/#declare-variables)):
+  - `STEPZEN_ACCOUNT` specifies the name of your StepZen account. This can be found on the [My Account page](https://stepzen.com/account) on StepZen.com;
+  - `STEPZEN_ADMIN_KEY` specifies the admin API Key that enables access to deploy APIs on your account on StepZen. This can be found on the [My Account page](https://stepzen.com/account) on StepZen.com
+  - `STEPZEN_NAME` specifies the endpoint name for your API. This will determine the URL that your endpoint will deployed to. For example, a user with the account name `biggs` and a endpoint name of `my-api` will deploy as `https://biggs.stepzen.net/netlify/my-api/__graphql` (note that this assumes the dealt `STEPZEN_FOLDER` value is used).
+- Optionally, you can specify two additional environment variables.
+  - `STEPZEN_FOLDER` is a folder name under which your endpoint will be deployed (this
+    defaults to `netlify`). StepZen generates the endpoint URL using a pattern of `https://[account].stepzen.com/[folder]/[endpoint name]`.
+  - `STEPZEN_CONFIGURATION_SETS` is a list of StepZen configurations to apply to your schema definitions. This is specified as a comma separated string, and defaults to `netlify/configuration,stepzen/defaults`. This is useful if you need to add configurations not included in the StepZen API's `confgi.yaml` file. For more about StepZen configurations, visit [the docs](https://stepzen.com/docs/features/manage-configuration-and-keys).
 
 ## How does it work?
 
-1. When you push changes to the `main` branch on GitHub (for cases where source
-   is stored in GitHub), GitHub calls a Netlify hook. (It works the same way if
-   your source materials are in `gitlab`, or `bitbucket`.)
+The StepZen GraphQL API is deployed whenever a site build is triggered (for example, if you push into your connected git repository). You'll be able to view progress via the Netlify deploy log. For example, a successful deploy will output something similar to the following in the deploy log:
 
-2. The hook triggers a checkout, build, and push on Netlify and results in the
-   updated website served by the Netlify CDN.
+```bash
+3:34:14 PM: ❯ Loading plugins
+3:34:14 PM:    - netlify-plugin-stepzen@1.0.2 from Netlify app
+3:34:14 PM: ​
+3:34:14 PM: ────────────────────────────────────────────────────────────────
+3:34:14 PM:   1. onPreBuild command from netlify-plugin-stepzen             
+3:34:14 PM: ────────────────────────────────────────────────────────────────
+3:34:14 PM: ​
+3:34:14 PM:  Deploying from StepZen account: biggs
+3:34:14 PM:  using configuration sets netlify/configuration,stepzen/defaults
+3:34:14 PM:  Pushing schema to netlify/my-api
+3:34:16 PM:  Your endpoint is available at https://biggs.stepzen.net/netlify/my-api/__graphql
+3:34:16 PM: ​
+3:34:16 PM: (netlify-plugin-stepzen onPreBuild completed in 1.9s)
+```
 
-   1. The build first establishes the build environment specified in the
-      `netlify.toml` file, but before triggering the build process, it triggers
-      the StepZen plugin.
+The API is deployed to StepZen _prior_ to the site build step. This enables you to access data in your GraphQL API during the build process, allowing you to pre-render pages off of dynamic data from the API.
 
-   2. The build plugin compiles, and pushes the contents of the GraphQL schema
-      files (SDLs) contained in the `stepzen` directory to the corresponding
-      StepZen account.
+## Where To Go From Here
 
-   3. The site build process begins. Because the site build process is triggered
-      after the StepZen plugin, StepZen APIs are available during the static
-      build.
-
-   4. Netlify completes the build and pushes the site to the Netlify CDN. Once
-      the push completes successfully, the StepZen endpoint includes the updated
-      GraphQL schema (SDL) code and is serving the new API.
-
-## Consequently
-
-StepZen enables you build a GraphQL API that gets the data you need from REST,
-databases or any backend. You don't need to be a GraphQL expert, build a GraphQL
-server, or understand resolvers. At runtime, StepZen ensures that API keys and
-queries are protected when making calls from a browser to retrieve and render
-data on the client-side. You don't need to write code to parallelize execution,
-store keys safely, handle caching, and more.
-
-The Netlify integration simplifies your deployment. The workflow you use to
-deploy changes on Netlify does not change. You manage your GraphQL schemas
-(SDLs) in a cohesive way with the rest of the Netlify site and your releases are
-coordinated.
+You can learn more about build GraphQL APIs using StepZen via the [StepZen documentation](https://stepzen.com/docs) or via the [StepZen blog](https://stepzen.com/blog).
