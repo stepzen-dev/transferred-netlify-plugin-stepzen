@@ -5,7 +5,7 @@ async function run(args) {
   const {
     STEPZEN_ACCOUNT,
     STEPZEN_ADMIN_KEY,
-    STEPZEN_FOLDER,
+    STEPZEN_FOLDER = 'netlify',
     STEPZEN_NAME,
     STEPZEN_CONFIGURATION_SETS,
   } = args.netlifyConfig.build.environment
@@ -28,7 +28,6 @@ async function run(args) {
 
   // Set STEPZEN_FOLDER_CONFIG and STEPZEN_CONFIGURATION_SETS_CONFIG
   // to a default value if absent
-  const STEPZEN_FOLDER_CONFIG = STEPZEN_FOLDER || 'netlify'
   const STEPZEN_CONFIGURATION_SETS_CONFIG =
     STEPZEN_CONFIGURATION_SETS || 'netlify/configuration,stepzen/defaults'
 
@@ -52,10 +51,10 @@ async function run(args) {
   }
 
   // Now construct all the parameters we need.
-  const endpoint = `${STEPZEN_FOLDER_CONFIG}/${STEPZEN_NAME}`
-  const configurationSets = STEPZEN_CONFIGURATION_SETS_CONFIG.split(',').map(
-    (term) => term.trim(),
-  )
+  const endpoint = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
+  const configurationSets = STEPZEN_CONFIGURATION_SETS_CONFIG.split(
+    ',',
+  ).map((term) => term.trim())
 
   console.info(
     `%c Deploying from StepZen account: ${STEPZEN_ACCOUNT}`,
