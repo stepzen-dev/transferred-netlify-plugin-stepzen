@@ -1,4 +1,5 @@
 // This is the main file for the Netlify Build plugin stepzen.
+const fs = require('fs')
 const stepzen = require('@stepzen/sdk')
 
 async function run(args) {
@@ -42,7 +43,11 @@ async function run(args) {
 
   // Now construct all the parameters we need.
   const endpoint = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
-  const configurationSets = ['stepzen/default']
+
+  const hasConfig = fs.existsSync(`stepzen/config.yaml`)
+  const configurationSets = hasConfig
+    ? [endpoint, 'stepzen/default']
+    : ['stepzen/default']
 
   console.info(
     `%c Deploying from StepZen account: ${STEPZEN_ACCOUNT}`,
@@ -64,6 +69,10 @@ async function run(args) {
     })
 
     await client.upload.schema(endpoint, 'stepzen')
+
+    if (hasConfig) {
+      await client.upload.configurationset(endpoint, 'stepzen/config.yaml')
+    }
 
     await client.deploy(endpoint, {
       configurationsets: configurationSets,
