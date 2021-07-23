@@ -1,36 +1,26 @@
 // This is the main file for the Netlify Build plugin stepzen.
+const fs = require('fs')
 const stepzen = require('@stepzen/sdk')
 
 async function run(args) {
   const {
     STEPZEN_ACCOUNT,
     STEPZEN_ADMIN_KEY,
-    STEPZEN_FOLDER,
+    STEPZEN_FOLDER = 'netlify',
     STEPZEN_NAME,
-    STEPZEN_CONFIGURATION_SETS,
   } = args.netlifyConfig.build.environment
 
   // If there are no parameters, then we should exit with no error.
   if (
-    [
-      STEPZEN_ACCOUNT,
-      STEPZEN_ADMIN_KEY,
-      STEPZEN_FOLDER,
-      STEPZEN_NAME,
-      STEPZEN_CONFIGURATION_SETS,
-    ].every((element) => !element)
+    [STEPZEN_ACCOUNT, STEPZEN_ADMIN_KEY, STEPZEN_FOLDER, STEPZEN_NAME].every(
+      (element) => !element,
+    )
   ) {
     // No parameters, have to not fail.
     return args.utils.status.show(
       'Successfully called the stepzen plugin, but no stepzen configuration found, exiting',
     )
   }
-
-  // Set STEPZEN_FOLDER_CONFIG and STEPZEN_CONFIGURATION_SETS_CONFIG
-  // to a default value if absent
-  const STEPZEN_FOLDER_CONFIG = STEPZEN_FOLDER || 'netlify'
-  const STEPZEN_CONFIGURATION_SETS_CONFIG =
-    STEPZEN_CONFIGURATION_SETS || 'netlify/configuration,stepzen/defaults'
 
   // Ensure that required areguments are present.
   if (!STEPZEN_ACCOUNT) {
@@ -52,10 +42,12 @@ async function run(args) {
   }
 
   // Now construct all the parameters we need.
-  const endpoint = `${STEPZEN_FOLDER_CONFIG}/${STEPZEN_NAME}`
-  const configurationSets = STEPZEN_CONFIGURATION_SETS_CONFIG.split(',').map(
-    (term) => term.trim(),
-  )
+  const endpoint = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
+
+  const hasConfig = fs.existsSync(`stepzen/config.yaml`)
+  const configurationSets = hasConfig
+    ? [endpoint, 'stepzen/default']
+    : ['stepzen/default']
 
   console.info(
     `%c Deploying from StepZen account: ${STEPZEN_ACCOUNT}`,
@@ -77,6 +69,10 @@ async function run(args) {
     })
 
     await client.upload.schema(endpoint, 'stepzen')
+
+    if (hasConfig) {
+      await client.upload.configurationset(endpoint, 'stepzen/config.yaml')
+    }
 
     await client.deploy(endpoint, {
       configurationsets: configurationSets,
