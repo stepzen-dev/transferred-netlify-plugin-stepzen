@@ -17,9 +17,12 @@ async function run(args) {
     )
   ) {
     // No parameters, have to not fail.
-    return args.utils.status.show(
-      'Successfully called the stepzen plugin, but no stepzen configuration found, exiting',
-    )
+    return args.utils.status.show({
+      title: 'StepZen plugin not executed',
+      summary:
+        'Successfully called the StepZen plugin, but no StepZen configuration found, exiting',
+      text: 'The environment variables STEPZEN_ACCOUNT, STEPZEN_ADMIN_KEY, STEPZEN_FOLDER, and STEPZEN_NAME are all required. Please consult the documentation for the StepZen plugin and set these appropriately.',
+    })
   }
 
   // Ensure that required areguments are present.
