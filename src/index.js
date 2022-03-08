@@ -1,6 +1,9 @@
 // This is the main file for the Netlify Build plugin stepzen.
 const fs = require('fs')
-const stepzen = require('@stepzen/sdk')
+const {init} = require('@stepzen/sdk')
+const {version} = require('../package.json')
+
+const stepzen = init({appName: `netlify-plugin-stepzen/${version}`})
 
 async function run(args) {
   const {
